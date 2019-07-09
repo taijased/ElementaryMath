@@ -194,6 +194,19 @@ class SettingVC: UIViewController {
         setupUI()
 //        setupSliderRange()
         
+        passwordGameTextField.delegate = self
+        passwordGameTextField.returnKeyType = .done
+        
+        rewardTextField.delegate = self
+        rewardTextField.returnKeyType = .done
+        
+        rightAnswersTextField.delegate = self
+        rightAnswersTextField.returnKeyType = .done
+        
+        
+        
+        
+        
         gradientLayer = CAGradientLayer()
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -288,7 +301,17 @@ extension SettingVC : SettingRangeSeekSliderDelegate {
         let rightInt = Int.random(in: currentSecondArgMin..<currentSecondArgMax)
 
         exampleLbl.text = "\(leftInt) + \(rightInt) = \(leftInt + rightInt)"
+        
     }
 
 
 }
+
+extension SettingVC: UITextFieldDelegate {
+   
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
+

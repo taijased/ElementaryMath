@@ -100,6 +100,11 @@ class PlayVC: UIViewController {
         newTask()
         
         
+        resultTextField.delegate = self
+        resultTextField.returnKeyType = .done
+        
+        
+        
         gradientLayer = CAGradientLayer()
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -199,4 +204,12 @@ class PlayVC: UIViewController {
         }
     }
 
+}
+
+extension PlayVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

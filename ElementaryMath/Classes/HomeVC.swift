@@ -145,9 +145,13 @@ class HomeVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
 
         passwordTextField.isHidden = true
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .done
         resetBtn.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(playGame), name: Notification.Name("StartGame"), object: nil)
         
+        
+   
         
     
         gradientLayer = CAGradientLayer()
@@ -156,3 +160,12 @@ class HomeVC: UIViewController {
     }
     
 }
+
+extension HomeVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
+
